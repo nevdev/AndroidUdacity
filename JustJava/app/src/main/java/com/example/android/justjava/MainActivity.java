@@ -14,7 +14,7 @@ import java.text.NumberFormat;
  */
 public class MainActivity extends AppCompatActivity {
 
-
+    private int order = 0;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -25,15 +25,36 @@ public class MainActivity extends AppCompatActivity {
      * This method is called when the order button is clicked.
      */
     public void submitOrder(View view){
-        int order = 2;
-        int price = 5;
-        display(order);
-        displayPrice(order * price);
+        int price = 6;
+
+
+
+        displayPrice(price * this.order);
     }
 
+    public void decrementQuantity(View view){
+        TextView quantityTextView = (TextView) findViewById(
+                R.id.quantity_text_view);
+        this.order = Integer.parseInt(quantityTextView.getText().toString());
+        if (this.order != 0)
+            this.order--;
+
+        quantityTextView.setText("" + this.order);
+    }
+
+    public void incrementQuantity(View view){
+        TextView quantityTextView = (TextView) findViewById(
+                R.id.quantity_text_view);
+        this.order = Integer.parseInt(quantityTextView.getText().toString());
+        this.order++;
+
+        quantityTextView.setText("" + this.order);
+    }
+/*
 /**
  *  This method displays the given price on the screen.
  */
+
     private void displayPrice(int number){
         TextView priceTextView = (TextView) findViewById(
                 R.id.price_text_view);
@@ -43,9 +64,11 @@ public class MainActivity extends AppCompatActivity {
 /**
  * This method displays the given quantity value on screen.
  */
+/*
     private void display(int number){
         TextView quantityTextView = (TextView) findViewById(
                 R.id.quantity_text_view);
         quantityTextView.setText("" + number);
     }
+  */
 }
